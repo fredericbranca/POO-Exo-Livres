@@ -1,14 +1,10 @@
 <?php
 
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
-});
-
 class Auteur
 {
     private string $_prenom;
     private string $_nom;
-    private array $_livre;
+    private array $_livres;
 
 // Constructeur pour initialiser la personne (prenom, nom)
 
@@ -16,7 +12,7 @@ class Auteur
     {
         $this->_prenom = $prenom;
         $this->_nom = $nom;
-        $this->_livre = array();
+        $this->_livres = [];
     }
 
 // Getter et setter pour les propriétés de l'auteur
@@ -43,7 +39,7 @@ class Auteur
 
     public function getLivre()
     {
-        return var_dump($this->_livre);
+        return var_dump($this->_livres);
     }
 
 // Méthode pour afficher le prenom et le nom de l'auteur
@@ -55,9 +51,9 @@ class Auteur
 
 // Méthode pour ajouter un livre à l'auteur
 
-    public function addLivre($livre)
+    public function addLivre(Livre $livre)
     {
-        $this->_livre[] = $livre;
+        $this->_livres[] = $livre;
     }
 
 // Methode pour afficher la bibliographie de l'auteur
@@ -65,7 +61,7 @@ class Auteur
     public function afficherBibliographie()
     {
        $result = "<div> <p> <b> Livre de " . $this->_prenom . " " . $this->_nom . "</b> </p>";
-       foreach ($this->_livre as $livre){
+       foreach ($this->_livres as $livre){
         $result .= $livre . "<br>";
        }
        $result .= "<br></div>";

@@ -1,31 +1,29 @@
 <?php
 
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
-});
 
 class Livre
 {
     private string $_titre;
     private int $_annee;
     private int $_nbPages;
-    private int $_prix;
-    private Auteur $auteur;
+    private float $_prix;
+    private Auteur $_auteur;
 
 // Constructeur pour initialiser le livre
 
-    public function __construct(string $titre, int $annee, int $nbPages, int $prix, $auteur)
+    public function __construct(string $titre, int $annee, int $nbPages, float $prix, Auteur $auteur)
     {
         $this->_titre = $titre;
         $this->_annee = $annee;
         $this->_nbPages = $nbPages;
         $this->_prix = $prix;
-        $this->auteur= $auteur;
+        $this->_auteur= $auteur;
+        $this->_auteur->addLivre($this);
     }
 
 // Getter et setter pour les propriétés du livre
 
-    public function getTitre() //Titre
+    public function getTitre(): string //Titre
     {
         return $this->_titre;
     }
@@ -35,7 +33,7 @@ class Livre
         $this->_titre = $titre;
     }
 
-    public function getNbPage() //Nombre de pages
+    public function getNbPage(): int //Nombre de pages
     {
         return $this->_nbPages;
     }
@@ -67,7 +65,7 @@ class Livre
 
     public function getAuteur() //Auteur
     {
-        return $this->auteur;
+        return $this->_auteur;
     }
 
 // Méthode pour afficher toutes les informations du livre

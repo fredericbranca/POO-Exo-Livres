@@ -1,8 +1,11 @@
 <?php
 
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
-});
+// spl_autoload_register(function ($class_name) {
+//     include $class_name . '.php';
+// });
+
+require_once("Livre.php");
+require_once("Auteur.php");
 
 $stephen = new Auteur("Stephen", "King");
 $victor = new Auteur("Victor", "Hugo");
@@ -14,14 +17,6 @@ $livre4 = new Livre("Shining", 1977, 447, 16, $stephen);
 $livre5 = new Livre("Les misérables", 1862, 2598, 15, $victor);
 $livre6 = new Livre("Notre-Dame de Paris", 1831, 940, 20, $victor);
 
-
-$stephen->addLivre($livre1);
-$stephen->addLivre($livre2);
-$stephen->addLivre($livre3);
-$stephen->addLivre($livre4);
-$victor->addLivre($livre5);
-$victor->addLivre($livre6);
-
 // echo $stephen->getLivre();
 
 // echo $stephen;
@@ -29,6 +24,8 @@ $victor->addLivre($livre6);
 // echo $livre1;
 
 // echo $livre1->getAuteur();
+
+// var_dump($livre1);
 
 echo $stephen->afficherBibliographie();
 echo $victor->afficherBibliographie();
